@@ -9,7 +9,7 @@ public class BotClass extends PircBot{
 	
 	PlayerInfo player = new PlayerInfo(); //creates instance of PlayerInfo
 	TeamInformation team = new TeamInformation(); //creates instance of TeamInformation
-	public int x = -1; //Always set to zero. First person in the draft
+	public int x = 0; //Always set to zero. First person in the draft
 	public int numPeople = 10; //Number of people in the round
 	public int y = 1; //Always set to one
 	public int[] order = new int[]{7, 10, 5, 2, 1, 4, 11, 3, 6, 8, 9};

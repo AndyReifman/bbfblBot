@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import org.jibble.pircbot.PircBot;
 
 
-public class BotClass extends PircBot{
+public class CopyOfBotClass extends PircBot{
 	
 	PlayerInfo player = new PlayerInfo(); //creates instance of PlayerInfo
 	TeamInformation team = new TeamInformation(); //creates instance of TeamInformation
 	public int x = -1; //Always set to zero. First person in the draft
 	public int numPeople = 10; //Number of people in the round
 	public int y = 1; //Always set to one
-	public int[] order = new int[]{7, 10, 5, 2, 1, 4, 11, 3, 6, 8, 9};
-	public int numRounds = 26; //number of rounds for the night
+	public int[] order = new int[]{7, 10, 1, 4, 12, 5, 8, 6, 9, 2, 3, 11};
+	public int numRounds = 6; //number of rounds for the night
 	public int roundNum = 1; //round to start on
 	//Constructor
-	public BotClass(String name)
+	public CopyOfBotClass(String name)
 	{
 		setName(name);
 	}
@@ -246,7 +246,6 @@ public class BotClass extends PircBot{
 			return "Glenn";
 		case 11:
 			return "Darren";
-		
 		}
 		return "";
 	}
@@ -284,7 +283,6 @@ public class BotClass extends PircBot{
 			return "GlennTippers";
 		case 11:
 			return "DarrenExpress";
-	
 		}
 		return null;
 	}
