@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 
+
 import org.jibble.pircbot.PircBot;
+import org.pircbotx.PircBotX;
 
 
 
@@ -44,14 +46,14 @@ public class PlayerInfo extends PircBot
 	
 	public ArrayList<String> getPlayers(String lastName) throws SQLException
 	{
-		String connectionString = "jdbc:odbc:Driver={Microsoft Access Driver (*.accdb)}; DBQ = C:\\RUSSELL\\BBFBL";
+		String connectionString = "jdbc:odbc:Driver={Microsoft Access Driver (*.accdb)}; DBQ = C:\\Users\\Andrew\\Dropbox\\Public\\Schoolwork\\IRC\\BBFBL";
 		Connection con;
 		Properties connectionProps = new Properties();
 		ArrayList<String> names = new ArrayList<String>(2); 
 		try
 		{
 			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-			con = DriverManager.getConnection("jdbc:ucanaccess://C:/RUSSELL/BBFBL/BBFBLMasterVersion3.0"); //name of ODBC driver
+			con = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\Andrew\\Dropbox\\Public\\Schoolwork\\IRC\\BBFBL"); //name of ODBC driver
 			Statement stmt = con.createStatement();
 			stmt.executeQuery("SELECT * FROM DraftNightQuery");
 			ResultSet rSet = stmt.getResultSet();
@@ -80,7 +82,7 @@ public class PlayerInfo extends PircBot
 	}
 	public ArrayList<String> getPrice(String money) throws SQLException
 	{
-		String connectionString = "jdbc:odbc:Driver={Microsoft Access Driver (*.accdb)}; DBQ = C:\\RUSSELL\\BBFBL";
+		String connectionString = "jdbc:odbc:Driver={Microsoft Access Driver (*.accdb)}; DBQ = C:\\Users\\Andrew\\Dropbox\\Public\\Schoolwork\\IRC\\BBFBL";
 		Connection con;
 		Properties connectionProps = new Properties();
 		ArrayList<String> names = new ArrayList<String>(2); 
@@ -115,7 +117,7 @@ public class PlayerInfo extends PircBot
 	}
 	public ArrayList<String> getPosition(String spot) throws SQLException
 	{
-		String connectionString = "jdbc:odbc:Driver={Microsoft Access Driver (*.accdb)}; DBQ = C:\\RUSSELL\\BBFBL";
+		String connectionString = "jdbc:odbc:Driver={Microsoft Access Driver (*.accdb)}; DBQ = C:\\Users\\Andrew\\Dropbox\\Public\\Schoolwork\\IRC\\BBFBL";
 		Connection con;
 		Properties connectionProps = new Properties();
 		ArrayList<String> names = new ArrayList<String>(2); 

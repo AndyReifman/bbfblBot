@@ -59,7 +59,12 @@ public class BotClass extends PircBot{
 			{
 				
 				try {
-					response = team.addPlayer(name, ownerID);
+					try {
+						response = team.addPlayer(name, ownerID);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					if(response != 1)
 						sendMessage(channel, turn + " drafts " + name + " $" + response);
 					else
