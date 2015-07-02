@@ -1,3 +1,9 @@
+/**
+	* This file handles all workings for the IRC bot + commands.
+	* @author Andrew Reifman-Packett
+	* @version 2 June 2015
+	* Copyright 2014-2015
+*/
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -6,12 +12,11 @@ import org.jibble.pircbot.PircBot;
 
 
 public class BotClass extends PircBot{
-	
+
 	PlayerInfo player = new PlayerInfo(); //creates instance of PlayerInfo
 	TeamInformation team = new TeamInformation(); //creates instance of TeamInformation
-	public int x = -1; //Always set to zero. First person in the draft
+	public int x = 0; //Always set to zero. First person in the draft
 	public int numPeople = 10; //Number of people in the round
-	public int y = 1; //Always set to one
 	public int[] order = new int[]{7, 10, 5, 2, 1, 4, 11, 3, 6, 8, 9};
 	public int numRounds = 26; //number of rounds for the night
 	public int roundNum = 1; //round to start on
@@ -24,7 +29,7 @@ public class BotClass extends PircBot{
 	/* (non-Javadoc)
 	 * @see org.jibble.pircbot.PircBot#onMessage(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
-	public void onMessage(String channel, String sender, String login, String hostname, String message) //when a message is said in chat box 
+	public void onMessage(String channel, String sender, String login, String hostname, String message) //when a message is said in chat box
 	{
 		if(message.equalsIgnoreCase("!hello")) //checks to see if message is !hello
 		{
@@ -36,8 +41,8 @@ public class BotClass extends PircBot{
 			sendMessage(channel, "Yes "+sender+"?");
 			return;
 		}
-		
-		
+
+
 		if(message.toLowerCase().startsWith("!salary")) //Salary check command
 		{
 			String lastName = message.toLowerCase().substring(8);
@@ -57,16 +62,16 @@ public class BotClass extends PircBot{
 			String name = message.toLowerCase().substring(7);
 			if(sender.equalsIgnoreCase(turn) || sender.equalsIgnoreCase("Junior_Commish") || sender.equalsIgnoreCase("TheCommish") || sender.equalsIgnoreCase("The_Commish"))
 			{
-				
+
 				try {
 					response = team.addPlayer(name, ownerID);
 					if(response != 1)
 						sendMessage(channel, turn + " drafts " + name + " $" + response);
 					else
 						sendMessage(channel, "That player's name is either spelled wrong or not available.");
-					
-				} 
-				catch (SQLException e) 
+
+				}
+				catch (SQLException e)
 				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -100,15 +105,15 @@ public class BotClass extends PircBot{
 			String name = message.toLowerCase().substring(6);
 			if(sender.equalsIgnoreCase(turn) || sender.equalsIgnoreCase("Junior_Commish") || sender.equalsIgnoreCase("Eabryt") || sender.equalsIgnoreCase("TheCommish") || sender.equalsIgnoreCase("The_Commish"))
 			{
-				
+
 				try {
 					response = team.dropPlayer(name, ownerID);
 					if(response == 1)
 						sendMessage(channel, turn + " dropped "+name);
 					else
 						sendMessage(channel, turn + " doesn't own "+name);
-				} 
-				catch (SQLException e)  
+				}
+				catch (SQLException e)
 				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -134,18 +139,17 @@ public class BotClass extends PircBot{
 					roundNum++;
 					sendMessage("#bbfbl", "Start of round "+roundNum);
 				}
-				x = -1;
-				y = 1;
+				x = 0;
 			}
 			else
 			{
-				x++;
 				String nextPick = pick(order[x]);
 				sendMessage("#bbfbl", nextPick);
+				x++;
 				return;
 			}
 		}
-		
+
 		if(message.toLowerCase().startsWith("!player")) //search by last name
 		{
 			String lastName = message.toLowerCase().substring(8);
@@ -159,10 +163,10 @@ public class BotClass extends PircBot{
 					}
 					return;
 				}
-			catch (SQLException e) 
+			catch (SQLException e)
 			{
 				e.printStackTrace();
-			}	
+			}
 		}
 		if(message.toLowerCase().startsWith("!price")) //search for a specific price
 		{
@@ -176,7 +180,7 @@ public class BotClass extends PircBot{
 						players.remove(0);
 					}
 					return;
-				} 
+				}
 			catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -193,7 +197,7 @@ public class BotClass extends PircBot{
 						players.remove(0);
 					}
 					return;
-				} 
+				}
 			catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -211,7 +215,7 @@ public class BotClass extends PircBot{
 			sendAction(channel[0], "Is awake and listening.");
 		}
 	}
-	
+
 	/**
 	 * Case 1 represents the first person in the round. It then goes in order from there.
 	 * To change the order simply change the names in the quotes ("Russell") after the return statement
@@ -246,7 +250,7 @@ public class BotClass extends PircBot{
 			return "Glenn";
 		case 11:
 			return "Darren";
-		
+
 		}
 		return "";
 	}
@@ -263,7 +267,7 @@ public class BotClass extends PircBot{
 		switch(x)
 		{
 		case 1:
-			return "JimLightning";			
+			return "JimLightning";
 		case 2:
 			return "RussellHurlers";
 		case 3:
@@ -284,11 +288,11 @@ public class BotClass extends PircBot{
 			return "GlennTippers";
 		case 11:
 			return "DarrenExpress";
-	
+
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Same cases as the pick method. Instead of returning the string name, return the persons OwnerID
 	 * @param x
@@ -326,4 +330,3 @@ public class BotClass extends PircBot{
 		return 0;
 	}*/
 }
-
