@@ -1,14 +1,32 @@
+package net.Reifman;
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
+
 /**
-	* Created by Andrew Reifman-Packett
 	* March 2014
 	* Copyright: 2014-2015
 	* Thanks to Misha Gale for helping guide me in the write direction and for writing the code that connects to a webpage
-**/
+	* @author Andrew Reifman-Packett
+*/
 
 public class MainClass {
+    public static ArrayList<Integer> order;
+    public static int rounds;
+   
 	public static void main(String[] args)
 	{
-		BotClass bot = new BotClass("BBFBL_Mod"); //create new bot and name it
+		 JFrame launch = new LaunchWindow(); 
+		 ArrayList<Integer> temp = ((LaunchWindow) launch).createGUI();
+		 launch.setVisible(true);
+		 rounds = temp.get(0);
+		 temp.remove(0);
+		 order = temp;
+		 connect();
+	}
+
+	private static void connect(){
+		BotClass bot = new BotClass("BBFBL_Mod", order, rounds); //create new bot and name it
 
 		try
 		{

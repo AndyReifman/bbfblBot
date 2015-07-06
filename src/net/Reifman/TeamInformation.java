@@ -1,3 +1,4 @@
+package net.Reifman;
 /**
 	* Connects to the database and does the work to add/drop players from teams.
 	* Will also return a managers current salary (Not including players dropped during current draft)
@@ -12,7 +13,6 @@ import java.io.File;
 import java.sql.*;
 import java.util.Properties;
 
-import com.healthmarketscience.jackcess.CryptCodecProvider;
 import com.healthmarketscience.jackcess.Database;
 import com.healthmarketscience.jackcess.DatabaseBuilder;
 

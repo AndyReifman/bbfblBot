@@ -1,10 +1,5 @@
-/**
-	* This file handles all workings for the IRC bot + commands.
-	* @author Andrew Reifman-Packett
-	* @version 2 June 2015
-	* Copyright 2014-2015
-*/
-import java.io.IOException;
+package net.Reifman;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -17,13 +12,17 @@ public class BotClass extends PircBot{
 	TeamInformation team = new TeamInformation(); //creates instance of TeamInformation
 	public int x = 0; //Always set to zero. First person in the draft
 	public int numPeople = 10; //Number of people in the round
-	public int[] order = new int[]{7, 10, 5, 2, 1, 4, 11, 3, 6, 8, 9};
-	public int numRounds = 26; //number of rounds for the night
+	public ArrayList<Integer> order = new ArrayList<Integer>();
+	public int numRounds; //number of rounds for the night
 	public int roundNum = 1; //round to start on
 	//Constructor
-	public BotClass(String name)
+	public BotClass(String name, ArrayList<Integer> t, int rounds)
 	{
 		setName(name);
+		numRounds = rounds;
+		order = t;
+		System.out.println("Number of Rounds: "+numRounds);
+		System.out.println("Order: "+order);
 	}
 
 	/* (non-Javadoc)
@@ -56,8 +55,8 @@ public class BotClass extends PircBot{
 		}
 		if(message.toLowerCase().startsWith("!draft")) //draft
 		{
-			String turn = teamName(order[x]);
-			int ownerID = order[x];
+			String turn = teamName(order.get(x));
+			int ownerID = order.get(x);
 			int response = 0;
 			String name = message.toLowerCase().substring(7);
 			if(sender.equalsIgnoreCase(turn) || sender.equalsIgnoreCase("Junior_Commish") || sender.equalsIgnoreCase("TheCommish") || sender.equalsIgnoreCase("The_Commish"))
@@ -87,7 +86,7 @@ public class BotClass extends PircBot{
 		}
 		if(message.toLowerCase().startsWith("!pass"))
 		{
-			String turn = teamName(order[x]);
+			String turn = teamName(order.get(x));
 			if(sender.equalsIgnoreCase(turn) || sender.equalsIgnoreCase("Junior_Commish") || sender.equalsIgnoreCase("TheCommish") || sender.equalsIgnoreCase("The_Commish"))
 			{
 				sendMessage(channel, turn + " passes");
@@ -99,8 +98,8 @@ public class BotClass extends PircBot{
 		}
 		if(message.toLowerCase().startsWith("!drop")) //draft
 		{
-			String turn = teamName(order[x]);
-			int ownerID = order[x];
+			String turn = teamName(order.get(x));
+			int ownerID = order.get(x);
 			int response;
 			String name = message.toLowerCase().substring(6);
 			if(sender.equalsIgnoreCase(turn) || sender.equalsIgnoreCase("Junior_Commish") || sender.equalsIgnoreCase("Eabryt") || sender.equalsIgnoreCase("TheCommish") || sender.equalsIgnoreCase("The_Commish"))
@@ -143,7 +142,7 @@ public class BotClass extends PircBot{
 			}
 			else
 			{
-				String nextPick = pick(order[x]);
+				String nextPick = pick(order.get(x));
 				sendMessage("#bbfbl", nextPick);
 				x++;
 				return;
