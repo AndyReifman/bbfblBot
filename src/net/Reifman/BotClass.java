@@ -21,8 +21,8 @@ public class BotClass extends PircBot{
 		setName(name);
 		numRounds = rounds;
 		order = t;
-		System.out.println("Number of Rounds: "+numRounds);
-		System.out.println("Order: "+order);
+//		System.out.println("Number of Rounds: "+numRounds);
+//		System.out.println("Order: "+order);
 	}
 
 	/* (non-Javadoc)
