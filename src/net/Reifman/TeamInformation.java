@@ -9,12 +9,7 @@ package net.Reifman;
 	*/
 	
 
-import java.io.File;
 import java.sql.*;
-import java.util.Properties;
-
-import com.healthmarketscience.jackcess.Database;
-import com.healthmarketscience.jackcess.DatabaseBuilder;
 
 
 
@@ -27,7 +22,7 @@ public class TeamInformation {
 		try
 		{
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Users/Andrew/Dropbox/Public/Schoolwork/IRC/BBFBLMasterVersion3.accdb"); //name of ODBC driver
+			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Users/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver
 			Statement stmt = con.createStatement();
 			//stmt.executeQuery("SELECT * FROM TeamPayrollQuery");
 			ResultSet rSet = stmt.executeQuery("SELECT * FROM TeamPayrollQuery");
@@ -56,7 +51,7 @@ public class TeamInformation {
 		try
 		{
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Users/Andrew/Dropbox/Public/Schoolwork/IRC/BBFBLMasterVersion3.accdb"); //name of ODBC driver
+			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Users/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver
 			Statement stmt = con.createStatement();
 			//stmt.executeQuery("SELECT * FROM DraftNightQuery");
 			//ResultSet rSet = stmt.getResultSet();
@@ -100,12 +95,11 @@ public class TeamInformation {
 	public int dropPlayer(String name, int x) throws SQLException
 	{
 		Connection con;
-		int money = 0;
 		try
 		{
 			String[] split = name.split("\\s");
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Users/Andrew/Dropbox/Public/Schoolwork/IRC/BBFBLMasterVersion3.accdb"); //name of ODBC driver
+			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Users/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver
 			Statement getPrice = con.createStatement();
 			Statement stmt = con.createStatement();
 			ResultSet rSet = getPrice.executeQuery("Select * FROM Players");

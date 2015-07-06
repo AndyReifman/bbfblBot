@@ -21,8 +21,8 @@ public class BotClass extends PircBot{
 		setName(name);
 		numRounds = rounds;
 		order = t;
-//		System.out.println("Number of Rounds: "+numRounds);
-//		System.out.println("Order: "+order);
+		System.out.println("Number of Rounds: "+numRounds);
+		System.out.println("Order: "+order);
 	}
 
 	/* (non-Javadoc)
@@ -72,10 +72,8 @@ public class BotClass extends PircBot{
 				}
 				catch (SQLException e)
 				{
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -114,7 +112,6 @@ public class BotClass extends PircBot{
 				}
 				catch (SQLException e)
 				{
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

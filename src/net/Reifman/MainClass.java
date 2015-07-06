@@ -1,8 +1,6 @@
 package net.Reifman;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-
 /**
 	* March 2014
 	* Copyright: 2014-2015
@@ -16,8 +14,8 @@ public class MainClass {
    
 	public static void main(String[] args)
 	{
-		 JFrame launch = new LaunchWindow(); 
-		 ArrayList<Integer> temp = ((LaunchWindow) launch).createGUI();
+		 LaunchWindow launch = new LaunchWindow(); 
+		 ((LaunchWindow) launch).createGUI();
 		 
 	}
 
