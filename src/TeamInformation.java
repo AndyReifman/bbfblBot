@@ -1,3 +1,13 @@
+/**
+	* Connects to the database and does the work to add/drop players from teams.
+	* Will also return a managers current salary (Not including players dropped during current draft)
+	* @author Andrew Reifman-Packett
+	* @version 6 July 2015
+	* Copyright 2014-2015
+	*
+	*/
+	
+
 import java.io.File;
 import java.sql.*;
 import java.util.Properties;
@@ -9,7 +19,7 @@ import com.healthmarketscience.jackcess.DatabaseBuilder;
 
 
 public class TeamInformation {
-	
+
 	public String salary(String name) throws SQLException //finds a persons salary
 	{
 		Connection con;
@@ -22,7 +32,7 @@ public class TeamInformation {
 			//stmt.executeQuery("SELECT * FROM TeamPayrollQuery");
 			ResultSet rSet = stmt.executeQuery("SELECT * FROM TeamPayrollQuery");
 			while(rSet.next())
-			{	
+			{
 				String lastName = rSet.getString("TeamName"); //get the item from column named Team Name
 				String salary = rSet.getString("Salary"); //get the item from column named Salary
 				int x = Integer.parseInt(salary);
@@ -43,7 +53,7 @@ public class TeamInformation {
 	{
 		//Database db = new DatabaseBuilder().setCodecProvider(new CryptCodecProvider()).open(new File("BBFBLMasterVersion3.accdb"));
 		Connection con;
-		try	
+		try
 		{
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Users/Andrew/Dropbox/Public/Schoolwork/IRC/BBFBLMasterVersion3.accdb"); //name of ODBC driver
@@ -51,10 +61,10 @@ public class TeamInformation {
 			//stmt.executeQuery("SELECT * FROM DraftNightQuery");
 			//ResultSet rSet = stmt.getResultSet();
 			ResultSet rSet = stmt.executeQuery("Select * FROM Players");
-			String[] split = name.split(" "); 
+			String[] split = name.split(" ");
 			String salary = "1";
 			while(rSet.next())
-			{	
+			{
 				String lastName = rSet.getString("Last");
 				//int x = Integer.parseInt(salary);
 				if(split[0].toLowerCase().equalsIgnoreCase(lastName))
@@ -73,7 +83,7 @@ public class TeamInformation {
 							if(id.toLowerCase().equalsIgnoreCase(tempID)){
 								salary = temp.getString("Salary");
 							}
-						}	
+						}
 						con.close();
 						connec.close();
 						stmt.close();
@@ -86,7 +96,7 @@ public class TeamInformation {
 		}
 		finally{}
 	}
-	
+
 	public int dropPlayer(String name, int x) throws SQLException
 	{
 		Connection con;
@@ -100,7 +110,7 @@ public class TeamInformation {
 			Statement stmt = con.createStatement();
 			ResultSet rSet = getPrice.executeQuery("Select * FROM Players");
 			while(rSet.next())
-			{	
+			{
 				String lastName = rSet.getString("Last");
 				//int x = Integer.parseInt(salary);
 				if(split[0].toLowerCase().equalsIgnoreCase(lastName))
@@ -114,7 +124,7 @@ public class TeamInformation {
 							return 0;
 						else if(x == Integer.parseInt(rSet.getString("OwnerID")))
 						{
-							String whoToDrop = "INSERT INTO WeeklyPlayersDropped (Last, First, OwnerID) VALUES ('"+split[0]+"','"+split[1]+"','"+x+"')"; 
+							String whoToDrop = "INSERT INTO WeeklyPlayersDropped (Last, First, OwnerID) VALUES ('"+split[0]+"','"+split[1]+"','"+x+"')";
 							stmt.executeUpdate(whoToDrop);
 							return 1;
 						}
@@ -124,7 +134,7 @@ public class TeamInformation {
 					}
 				}
 			}
-			
+
 		}
 		catch (ClassNotFoundException e)
 		{
@@ -132,5 +142,5 @@ public class TeamInformation {
 		}
 		return 0;
 	}
-	
+
 }
