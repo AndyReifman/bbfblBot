@@ -15,29 +15,6 @@ import org.jibble.pircbot.PircBot;
 
 public class PlayerInfo extends PircBot
 {
-	/*public ArrayList<String> getPlayers(String lastName) throws IOException
-	{
-		Document doc = Jsoup.connect("http://www.bbfbl.com/players-available/").timeout(0).get(); //The website it is getting the information from
-		Elements rows = doc.getElementsByTag("tr"); //searches by row
-		ArrayList<String> names = new ArrayList<String>(2); 
-		for(Element row : rows)
-		{
-			Elements columns = row.getElementsByTag("td"); //Columns
-			String name = columns.get(1).text(); //Gets the item in column 2 (1 in the array)
-			String price = columns.get(3).text(); //gets the item in column 4 (2 in the array)
-			if(lastName.equalsIgnoreCase(name))
-			{
-				name = name + ", "+ columns.get(2).text() +" "+ price;
-				names.add(name);
-			}
-		}
-		if(names.size() > 0)
-		{
-			return names;
-		}
-		else
-			return null;
-	} */
 	
 	public ArrayList<String> getPlayers(String lastName) throws SQLException
 	{
@@ -55,7 +32,6 @@ public class PlayerInfo extends PircBot
 			{	
 				String name = rSet.getString("Last"); //get the item from column named Team Name
 				String price = rSet.getString("Salary"); //get the item from column named Salary
-				//int x = Integer.parseInt(salary);
 				if(name.toLowerCase().startsWith(lastName))
 				{
 					name = name + ", " + rSet.getString("First") + " $" + price;

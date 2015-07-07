@@ -21,8 +21,8 @@ public class BotClass extends PircBot{
 		setName(name);
 		numRounds = rounds;
 		order = t;
-		System.out.println("Number of Rounds: "+numRounds);
-		System.out.println("Order: "+order);
+//		System.out.println("Number of Rounds: "+numRounds);
+//		System.out.println("Order: "+order);
 	}
 
 	/* (non-Javadoc)
@@ -289,40 +289,5 @@ public class BotClass extends PircBot{
 		return null;
 	}
 
-	/**
-	 * Same cases as the pick method. Instead of returning the string name, return the persons OwnerID
-	 * @param x
-	 * @return
-	 */
-	/*public int ID(int x)
-	{
-		switch(x)
-		{
-		case 1:
-			return 4;
-		case 2:
-			return 10;
-		case 3:
-			return 1;
-		case 4:
-			return 12;
-		case 5:
-			return 7;
-		case 6:
-			return 5;
-		case 7:
-			return 8;
-		case 8:
-			return 9;
-		case 9:
-			return 2;
-		case 10:
-			return 6;
-		case 11:
-			return 3;
-		case 12:
-			return 11;
-		}
-		return 0;
-	}*/
+	
 }

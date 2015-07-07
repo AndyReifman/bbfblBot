@@ -46,22 +46,18 @@ public class TeamInformation {
 	public int addPlayer(String name, int x) throws SQLException //drafts a person to team x (ownerID)
 , ClassNotFoundException
 	{
-		//Database db = new DatabaseBuilder().setCodecProvider(new CryptCodecProvider()).open(new File("BBFBLMasterVersion3.accdb"));
 		Connection con;
 		try
 		{
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Users/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver
 			Statement stmt = con.createStatement();
-			//stmt.executeQuery("SELECT * FROM DraftNightQuery");
-			//ResultSet rSet = stmt.getResultSet();
 			ResultSet rSet = stmt.executeQuery("Select * FROM Players");
 			String[] split = name.split(" ");
 			String salary = "1";
 			while(rSet.next())
 			{
 				String lastName = rSet.getString("Last");
-				//int x = Integer.parseInt(salary);
 				if(split[0].toLowerCase().equalsIgnoreCase(lastName))
 				{
 					String firstName = rSet.getString("First"); //get the item from column named Team Name
@@ -106,7 +102,6 @@ public class TeamInformation {
 			while(rSet.next())
 			{
 				String lastName = rSet.getString("Last");
-				//int x = Integer.parseInt(salary);
 				if(split[0].toLowerCase().equalsIgnoreCase(lastName))
 				{
 					String firstName = rSet.getString("First"); //get the item from column named Team Name
