@@ -125,7 +125,7 @@ public class BotClass extends PircBot{
 	{
 		if(message.equalsIgnoreCase("!next") && (sender.equalsIgnoreCase("Junior_Commish") || sender.equalsIgnoreCase("The_Commish") || sender.equalsIgnoreCase("Eabryt")) || sender.equalsIgnoreCase("TheCommish")) //goes to the next person to pick
 		{
-			if(x == numPeople)
+			if(x > numPeople)
 			{
 				if(roundNum == numRounds)
 					sendMessage("#bbfbl", "End of tonight's draft");
@@ -289,5 +289,5 @@ public class BotClass extends PircBot{
 		return null;
 	}
 
-	
+
 }
