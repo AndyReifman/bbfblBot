@@ -142,7 +142,6 @@ public class BotClass extends PircBot{
 			{
 				String nextPick = pick(order.get(x));
 				sendMessage("#bbfbl", nextPick);
-				x++;
 				return;
 			}
 		}
