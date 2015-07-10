@@ -23,7 +23,7 @@ public class PlayerInfo extends PircBot
 		try
 		{
 			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Users/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver
+			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver
 			Statement stmt = con.createStatement();
 			stmt.executeQuery("SELECT * FROM DraftNightQuery");
 			ResultSet rSet = stmt.getResultSet();

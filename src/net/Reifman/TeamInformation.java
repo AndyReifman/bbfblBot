@@ -22,7 +22,7 @@ public class TeamInformation {
 		try
 		{
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Users/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver
+			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver
 			Statement stmt = con.createStatement();
 			//stmt.executeQuery("SELECT * FROM TeamPayrollQuery");
 			ResultSet rSet = stmt.executeQuery("SELECT * FROM TeamPayrollQuery");
@@ -50,7 +50,7 @@ public class TeamInformation {
 		try
 		{
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Users/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver
+			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver
 			Statement stmt = con.createStatement();
 			ResultSet rSet = stmt.executeQuery("Select * FROM Players");
 			String[] split = name.split(" ");
@@ -95,7 +95,7 @@ public class TeamInformation {
 		{
 			String[] split = name.split("\\s");
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Users/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver
+			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver
 			Statement getPrice = con.createStatement();
 			Statement stmt = con.createStatement();
 			ResultSet rSet = getPrice.executeQuery("Select * FROM Players");
