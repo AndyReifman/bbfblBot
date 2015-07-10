@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class LaunchWindow {
 
@@ -164,16 +166,21 @@ public class LaunchWindow {
 	public void showRunningWindow() {
 
 		JLabel lblRunning = new JLabel("Running...");
+		JLabel lblEmpty = new JLabel("\n\n");
+		JLabel lblOrder = new JLabel("The order of tonight's draft is: "+temp.toString());
 		JButton btnExit = new JButton("Exit");
 		window.setTitle("Bbfbl Bot");
 		window.setSize(300, 200);
 		window.setLocationRelativeTo(null);
 		window.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		running.setLayout(new FlowLayout());
+		running.setLayout(new BoxLayout(running, BoxLayout.Y_AXIS));
 		running.add(lblRunning);
+		running.add(lblEmpty);
+		running.add(lblOrder);
+		running.add(lblEmpty);
 		running.add(btnExit);
 		window.getContentPane().add(running);
-		window.pack();
+		//window.pack();
 		window.setVisible(true);
 
 		btnExit.addActionListener(new ActionListener() {
