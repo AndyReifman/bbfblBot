@@ -7,7 +7,7 @@ package net.Reifman;
 	* Copyright 2014-2015
 	*
 	*/
-	
+
 
 import java.sql.*;
 
@@ -63,23 +63,26 @@ public class TeamInformation {
 					String firstName = rSet.getString("First"); //get the item from column named Team Name
 					if(split[1].toLowerCase().equalsIgnoreCase(firstName))
 					{
-						Statement connec = con.createStatement();
-						Statement idMatch = con.createStatement();
-						String id = rSet.getString("ID");
-						connec.executeUpdate("UPDATE Players SET OwnerID = "+x+" WHERE Last ='"+split[0]+"' AND First='"+split[1]+"' ");
-						//stmt.executeUpdate(whoToAdd);
-						ResultSet temp =idMatch.executeQuery("SELECT * FROM Salaries WHERE ID ='"+id+"'");
-						while(temp.next()){
-							String tempID = rSet.getString("ID");
-							if(id.toLowerCase().equalsIgnoreCase(tempID)){
-								salary = temp.getString("Salary");
+						String drafted = rSet.getString("OwnerID");
+						if(!drafted.equalsIgnoreCase(null)){
+							Statement connec = con.createStatement();
+							Statement idMatch = con.createStatement();
+							String id = rSet.getString("ID");
+							connec.executeUpdate("UPDATE Players SET OwnerID = "+x+" WHERE Last ='"+split[0]+"' AND First='"+split[1]+"' ");
+							//stmt.executeUpdate(whoToAdd);
+							ResultSet temp =idMatch.executeQuery("SELECT * FROM Salaries WHERE ID ='"+id+"'");
+							while(temp.next()){
+								String tempID = rSet.getString("ID");
+								if(id.toLowerCase().equalsIgnoreCase(tempID)){
+									salary = temp.getString("Salary");
+								}
 							}
+							con.close();
+							connec.close();
+							stmt.close();
+							idMatch.close();
+							return Integer.parseInt(salary);
 						}
-						con.close();
-						connec.close();
-						stmt.close();
-						idMatch.close();
-						return Integer.parseInt(salary);
 					}
 				}
 			}

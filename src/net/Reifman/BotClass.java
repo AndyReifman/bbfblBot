@@ -29,18 +29,11 @@ public class BotClass extends PircBot {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see org.jibble.pircbot.PircBot#onMessage(java.lang.String, java.lang.String, java.lang.String,
    * java.lang.String, java.lang.String)
    */
-  public void onMessage(String channel, String sender, String login, String hostname, String message) // when
-                                                                                                      // a
-                                                                                                      // message
-                                                                                                      // is
-                                                                                                      // said
-                                                                                                      // in
-                                                                                                      // chat
-                                                                                                      // box
+  public void onMessage(String channel, String sender, String login, String hostname, String message) // when a message is said in chat box
   {
     if (message.equalsIgnoreCase("!hello")) // checks to see if message is !hello
     {
@@ -72,7 +65,7 @@ public class BotClass extends PircBot {
       String name = message.toLowerCase().substring(7);
       if (sender.equalsIgnoreCase(turn) || sender.equalsIgnoreCase("Junior_Commish")
           || sender.equalsIgnoreCase("TheCommish") || sender.equalsIgnoreCase("The_Commish")) {
-        
+
         if (name.equalsIgnoreCase(lastPicked)) {
           sendMessage(channel, "That player was just drafted, please pay attention " + turn + ".");
         } else {
@@ -224,7 +217,7 @@ public class BotClass extends PircBot {
    * the order simply change the names in the quotes ("Russell") after the return statement To add
    * more people simple increase the number of cases. The variable numPeople at the top of the
    * program MUST match the number of cases.
-   * 
+   *
    * @param x
    * @return
    */
@@ -261,7 +254,7 @@ public class BotClass extends PircBot {
    * The return statements can be based off peoples usernames. Order is again determined by specific
    * draft Usernames MUST be team names as one word OR a specific (preferably registered) name and
    * can be changed to that in the statement
-   * 
+   *
    * @param x
    * @return
    */
