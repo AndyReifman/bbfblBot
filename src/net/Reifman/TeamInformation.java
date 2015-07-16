@@ -63,9 +63,9 @@ public class TeamInformation {
 					String firstName = rSet.getString("First"); //get the item from column named Team Name
 					if(split[1].toLowerCase().equalsIgnoreCase(firstName))
 					{
-						String drafted = rSet.getString("OwnerID");
+						int drafted = rSet.getInt("OwnerID");
 						System.out.println("Owner ID: "+drafted);
-						if(drafted == null){
+						if(drafted == 0){
 							Statement connec = con.createStatement();
 							Statement idMatch = con.createStatement();
 							String id = rSet.getString("ID");
@@ -82,9 +82,10 @@ public class TeamInformation {
 							connec.close();
 							stmt.close();
 							idMatch.close();
+							System.out.println(salary);
 							return Integer.parseInt(salary);
 						}
-						return 1;
+						
 					}
 				}
 			}
