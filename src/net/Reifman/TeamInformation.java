@@ -22,7 +22,7 @@ public class TeamInformation {
 		try
 		{
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver
+			con = DriverManager.getConnection("jdbc:ucanaccess://h:/Projects/bbfblBot/BBFBLMasterVersion3.accdb"); //name of ODBC driver
 			Statement stmt = con.createStatement();
 			//stmt.executeQuery("SELECT * FROM TeamPayrollQuery");
 			ResultSet rSet = stmt.executeQuery("SELECT * FROM TeamPayrollQuery");
@@ -50,7 +50,7 @@ public class TeamInformation {
 		try
 		{
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver
+			con = DriverManager.getConnection("jdbc:ucanaccess://h:/Projects/bbfblBot/BBFBLMasterVersion3.accdb"); //name of ODBC driver
 			Statement stmt = con.createStatement();
 			ResultSet rSet = stmt.executeQuery("Select * FROM Players");
 			String[] split = name.split(" ");
@@ -64,7 +64,8 @@ public class TeamInformation {
 					if(split[1].toLowerCase().equalsIgnoreCase(firstName))
 					{
 						String drafted = rSet.getString("OwnerID");
-						if(!drafted.equalsIgnoreCase(null)){
+						System.out.println("Owner ID: "+drafted);
+						if(drafted == null){
 							Statement connec = con.createStatement();
 							Statement idMatch = con.createStatement();
 							String id = rSet.getString("ID");
@@ -83,6 +84,7 @@ public class TeamInformation {
 							idMatch.close();
 							return Integer.parseInt(salary);
 						}
+						return 1;
 					}
 				}
 			}
@@ -98,7 +100,7 @@ public class TeamInformation {
 		{
 			String[] split = name.split("\\s");
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver
+			con = DriverManager.getConnection("jdbc:ucanaccess://h:/Projects/bbfblBot/BBFBLMasterVersion3.accdb"); //name of ODBC driver
 			Statement getPrice = con.createStatement();
 			Statement stmt = con.createStatement();
 			ResultSet rSet = getPrice.executeQuery("Select * FROM Players");

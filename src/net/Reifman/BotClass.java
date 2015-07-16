@@ -10,8 +10,7 @@ public class BotClass extends PircBot {
 
   PlayerInfo player = new PlayerInfo(); // creates instance of PlayerInfo
   TeamInformation team = new TeamInformation(); // creates instance of TeamInformation
-  public int x = -1; // Start at -1 so that you can change X without knowing if the person is going
-                     // to draft/drop or not.
+  public int x = -1; // Start at -1 so that you can change X without knowing if the person is going to draft/drop or not.
   public int numPeople = 10; // Number of people in the round
   public ArrayList<Integer> order = new ArrayList<Integer>();
   public int numRounds; // number of rounds for the night
@@ -69,7 +68,7 @@ public class BotClass extends PircBot {
         if (name.equalsIgnoreCase(lastPicked)) {
           sendMessage(channel, "That player was just drafted, please pay attention " + turn + ".");
         } else {
-
+ 
             try {
               response = team.addPlayer(name, ownerID);
               if (response != 1){
