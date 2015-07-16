@@ -22,7 +22,7 @@ public class TeamInformation {
 		try
 		{
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			con = DriverManager.getConnection("jdbc:ucanaccess://h:/Projects/bbfblBot/BBFBLMasterVersion3.accdb"); //name of ODBC driver
+			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver
 			Statement stmt = con.createStatement();
 			//stmt.executeQuery("SELECT * FROM TeamPayrollQuery");
 			ResultSet rSet = stmt.executeQuery("SELECT * FROM TeamPayrollQuery");
@@ -50,7 +50,7 @@ public class TeamInformation {
 		try
 		{
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			con = DriverManager.getConnection("jdbc:ucanaccess://h:/Projects/bbfblBot/BBFBLMasterVersion3.accdb"); //name of ODBC driver
+			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver
 			Statement stmt = con.createStatement();
 			ResultSet rSet = stmt.executeQuery("Select * FROM Players");
 			String[] split = name.split(" ");
@@ -64,7 +64,6 @@ public class TeamInformation {
 					if(split[1].toLowerCase().equalsIgnoreCase(firstName))
 					{
 						int drafted = rSet.getInt("OwnerID");
-						System.out.println("Owner ID: "+drafted);
 						if(drafted == 0){
 							Statement connec = con.createStatement();
 							Statement idMatch = con.createStatement();
@@ -82,7 +81,6 @@ public class TeamInformation {
 							connec.close();
 							stmt.close();
 							idMatch.close();
-							System.out.println(salary);
 							return Integer.parseInt(salary);
 						}
 						
@@ -101,7 +99,7 @@ public class TeamInformation {
 		{
 			String[] split = name.split("\\s");
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			con = DriverManager.getConnection("jdbc:ucanaccess://h:/Projects/bbfblBot/BBFBLMasterVersion3.accdb"); //name of ODBC driver
+			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver
 			Statement getPrice = con.createStatement();
 			Statement stmt = con.createStatement();
 			ResultSet rSet = getPrice.executeQuery("Select * FROM Players");
