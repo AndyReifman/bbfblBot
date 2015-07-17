@@ -68,15 +68,20 @@ public class BotClass extends PircBot {
         if (name.equalsIgnoreCase(lastPicked)) {
           sendMessage(channel, "That player was just drafted, please pay attention " + turn + ".");
         } else {
- 
+
             try {
               response = team.addPlayer(name, ownerID);
-              if (response != 1){
+              if (response == 1){
+                sendMessage(channel, "That player's name is either spelled wrong, or does not exist.");
+                lastPicked = name;
+              }
+              else if(response == -1){
+                sendMessage(channel, name +" has already been drafted.");
+              }
+              else{
                 sendMessage(channel, turn + " drafts " + name + " $" + response);
                 lastPicked = name;
               }
-              else
-                sendMessage(channel, "That player's name is either spelled wrong or not available.");
             } catch (SQLException e) {
             e.printStackTrace();
             } catch (ClassNotFoundException e) {

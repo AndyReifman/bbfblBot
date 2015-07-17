@@ -83,7 +83,7 @@ public class TeamInformation {
 							idMatch.close();
 							return Integer.parseInt(salary);
 						}
-						
+					return -1; //Player exists, but is not avialable
 					}
 				}
 			}
