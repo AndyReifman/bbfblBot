@@ -24,7 +24,6 @@ public class TeamInformation {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver
 			Statement stmt = con.createStatement();
-			//stmt.executeQuery("SELECT * FROM TeamPayrollQuery");
 			ResultSet rSet = stmt.executeQuery("SELECT * FROM TeamPayrollQuery");
 			while(rSet.next())
 			{
@@ -83,7 +82,7 @@ public class TeamInformation {
 							idMatch.close();
 							return Integer.parseInt(salary);
 						}
-					return -1; //Player exists, but is not avialable
+					return -1; //Player exists, but is not available
 					}
 				}
 			}
