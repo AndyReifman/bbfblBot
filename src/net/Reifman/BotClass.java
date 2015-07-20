@@ -60,7 +60,7 @@ public class BotClass extends PircBot {
     {
       String turn = teamName(order.get(x));
       int ownerID = order.get(x);
-      int response = 0;
+      String response = "";
       String name = message.toLowerCase().substring(7);
       if (sender.equalsIgnoreCase(turn) || sender.equalsIgnoreCase("Junior_Commish")
           || sender.equalsIgnoreCase("TheCommish") || sender.equalsIgnoreCase("The_Commish")) {
@@ -71,22 +71,20 @@ public class BotClass extends PircBot {
 
             try {
               response = team.addPlayer(name, ownerID);
-              if (response == 1){
+              if (response == ""){
                 sendMessage(channel, "That player's name is either spelled wrong, or does not exist.");
                 lastPicked = name;
               }
-              else if(response == -1){
+              else if(response == "taken"){
                 sendMessage(channel, name +" has already been drafted.");
               }
               else{
                 sendMessage(channel, turn + " drafts " + name + " $" + response);
                 lastPicked = name;
               }
-            } catch (SQLException e) {
-            e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            }
+			}catch(Exception e){
+				e.printStackTrace();
+			}
         }
       } else {
         sendMessage(channel, "Sorry " + sender + " it's not your turn yet.");

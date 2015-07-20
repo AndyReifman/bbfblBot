@@ -9,6 +9,7 @@ package net.Reifman;
 	*/
 
 
+import java.io.IOException;
 import java.sql.*;
 
 
@@ -42,8 +43,8 @@ public class TeamInformation {
 		}
 		return null;
 	}
-	public int addPlayer(String name, int x) throws SQLException //drafts a person to team x (ownerID)
-, ClassNotFoundException
+	public String addPlayer(String name, int x) throws SQLException //drafts a person to team x (ownerID)
+, ClassNotFoundException, IOException
 	{
 		Connection con;
 		try
@@ -62,31 +63,45 @@ public class TeamInformation {
 					String firstName = rSet.getString("First"); //get the item from column named Team Name
 					if(split[1].toLowerCase().equalsIgnoreCase(firstName))
 					{
-						int drafted = rSet.getInt("OwnerID");
-						if(drafted == 0){
-							Statement connec = con.createStatement();
-							Statement idMatch = con.createStatement();
-							String id = rSet.getString("ID");
-							connec.executeUpdate("UPDATE Players SET OwnerID = "+x+" WHERE Last ='"+split[0]+"' AND First='"+split[1]+"' ");
-							//stmt.executeUpdate(whoToAdd);
-							ResultSet temp =idMatch.executeQuery("SELECT * FROM Salaries WHERE ID ='"+id+"'");
-							while(temp.next()){
-								String tempID = rSet.getString("ID");
-								if(id.toLowerCase().equalsIgnoreCase(tempID)){
-									salary = temp.getString("Salary");
+						String ownID = "Test";
+						ownID = rSet.getString("OwnerID");
+						if(ownID == null){
+							boolean repeat = RepeatPicks.repeat(lastName, firstName);
+							if(repeat == false){
+								Statement connec = con.createStatement();
+								Statement idMatch = con.createStatement();
+								Statement posMatch = con.createStatement();
+								String id = rSet.getString("ID");
+								connec.executeUpdate("UPDATE Players SET OwnerID = "+x+" WHERE Last ='"+split[0]+"' AND First='"+split[1]+"' ");
+								//stmt.executeUpdate(whoToAdd);
+								ResultSet temp =idMatch.executeQuery("SELECT * FROM Salaries WHERE ID ='"+id+"'");
+								while(temp.next()){
+									String tempID = rSet.getString("ID");
+									if(id.toLowerCase().equalsIgnoreCase(tempID)){
+										salary = temp.getString("Salary");
+									}
 								}
+								ResultSet pos = posMatch.executeQuery("SELECT * FROM TotalStats WHERE Last = '"+split[0]+"' AND First ='"+split[1]+"' ");
+								while(pos.next()){
+									String tempPost = pos.getString("pos");
+	
+									if(tempPost.equals(null))
+										salary += " No position listed";
+									else
+										salary += " "+ tempPost;
+								}
+								con.close();
+								connec.close();
+								stmt.close();
+								idMatch.close();
+								return salary;
 							}
-							con.close();
-							connec.close();
-							stmt.close();
-							idMatch.close();
-							return Integer.parseInt(salary);
 						}
-					return -1; //Player exists, but is not available
+					return "taken"; //Player exists, but is not available
 					}
 				}
 			}
-			return 1;
+			return "";
 		}
 		finally{}
 	}
