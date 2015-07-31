@@ -11,6 +11,8 @@ package net.Reifman;
 
 import java.io.IOException;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 
 
@@ -108,12 +110,14 @@ public class TeamInformation {
 
 	public int dropPlayer(String name, int x) throws SQLException
 	{
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		java.util.Date d = new java.util.Date();
 		Connection con;
 		try
 		{
 			String[] split = name.split("\\s");
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver
+			con = DriverManager.getConnection("jdbc:ucanaccess://C:/Russell/BBFBL/BBFBLMasterVersion3.accdb"); //name of ODBC driver 			
 			Statement getPrice = con.createStatement();
 			Statement stmt = con.createStatement();
 			ResultSet rSet = getPrice.executeQuery("Select * FROM Players");
@@ -131,7 +135,8 @@ public class TeamInformation {
 							return 0;
 						else if(x == Integer.parseInt(rSet.getString("OwnerID")))
 						{
-							String whoToDrop = "INSERT INTO WeeklyPlayersDropped (Last, First, OwnerID) VALUES ('"+split[0]+"','"+split[1]+"','"+x+"')";
+							System.out.println(df.format(d));
+							String whoToDrop = "INSERT INTO WeeklyPlayersDropped (DateDrafted, Last, First, OwnerID) VALUES ('" + df.format(d) + "','"+split[0]+"','"+split[1]+"','"+x+"')";
 							stmt.executeUpdate(whoToDrop);
 							return 1;
 						}
