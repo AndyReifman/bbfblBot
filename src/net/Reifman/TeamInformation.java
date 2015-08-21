@@ -136,7 +136,7 @@ public class TeamInformation {
 						else if(x == Integer.parseInt(rSet.getString("OwnerID")))
 						{
 							System.out.println(df.format(d));
-							String whoToDrop = "INSERT INTO WeeklyPlayersDropped (DateDrafted, Last, First, OwnerID) VALUES ('" + df.format(d) + "','"+split[0]+"','"+split[1]+"','"+x+"')";
+							String whoToDrop = "INSERT INTO WeeklyPlayersDropped (DraftDate, Last, First, OwnerID) VALUES ('" + df.format(d) + "','"+split[0]+"','"+split[1]+"','"+x+"')";
 							stmt.executeUpdate(whoToDrop);
 							return 1;
 						}
