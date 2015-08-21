@@ -106,7 +106,7 @@ public class BotClass extends PircBot {
         }
       } else if (message.toLowerCase().startsWith("!drop")) // draft
       {
-        if (message.length() < 6) {
+        if (message.length() < 5) {
           sendMessage(channel, "Please enter the valid drop command.");
           sendMessage(channel, "!drop <last> <first>");
         } else {
