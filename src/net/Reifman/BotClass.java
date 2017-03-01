@@ -246,7 +246,7 @@ public class BotClass extends PircBot {
       case 3:
         return "Dutra";
       case 4:
-        return "Jeff";
+        return "Steve";
       case 5:
         return "John C";
       case 6:
@@ -283,7 +283,7 @@ public class BotClass extends PircBot {
       case 3:
         return "DavidPontiffs";
       case 4:
-        return "JeffChiefs";
+        return "StevePrestige";
       case 5:
         return "JohnHuskies";
       case 6:
