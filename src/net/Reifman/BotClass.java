@@ -160,7 +160,7 @@ public class BotClass extends PircBot {
         x = -1;
       } else {
         String nextPick = pick(order.get(x));
-        sendMessage("#bbfbl", nextPick);
+        sendMessage("#bbfbl", nextPick + " it's your turn to pick.");
         return;
       }
     }
